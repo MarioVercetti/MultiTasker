@@ -5,6 +5,7 @@ import turtle
 import keyboard
 import mouse
 import ctypes
+from colorama import Fore
 
 """
 |||||||||||||||||||||||||||
@@ -33,6 +34,74 @@ def clear():
         os.system('clear')
 
 
+def developermain():
+    clear()
+    print(Fore.GREEN + "You just unlocked the developer mode!")
+    print("What do you want to choose?")
+    print("1.Python Package Manager")
+    print("2.Python Compiler")
+    devchoice = input()
+    if devchoice == "1":
+        print("What do you want to do?")
+        print("1.Install Package")
+        print("2.Uninstall Package")
+        print("3.Check what packages i have installed")
+        print("4.run package")
+        print("5.reinstall package")
+        choice = input()
+        if choice == "1":
+            print("type what package do you want to install:")
+            package = input()
+            os.system("cmd /k pip install " + package)
+            print("package is installed!")
+            print("press enter to go back")
+            keyboard.wait("enter")
+            main()
+        if choice == "2":
+            print("type what package do you want to uninstall:")
+            package = input()
+            os.system("cmd /k pip uninstall " + package)
+            print("package is uninstalled!")
+            print("press enter to go back")
+            keyboard.wait("enter")
+            main()
+        if choice == "3":
+            installed_packages = os.system("cmd /c pip list")
+            print(installed_packages)
+            print("=====================================================")
+            print("press enter to go back")
+            keyboard.wait("enter")
+            main()
+        if choice == "4":
+            print("type name of the package you want to run:")
+            package = input()
+            os.system("cmd /k " + package)
+        if choice == "5":
+            print("type what package do you want to uninstall:")
+            package = input()
+            print("Uninstalling the package..")
+            os.system("cmd /k pip uninstall " + package)
+            print("Installing the package..")
+            os.system("cmd /k pip install " + package)
+            print("press enter to go back")
+            keyboard.wait("enter")
+            main()
+    elif devchoice == "2":
+        compiler = "auto-py-to-exe"
+        os.system("cmd /k pip list")
+        installed_packages = os.system("cmd /k pip freeze")
+        if compiler not in installed_packages:
+            print("you don't have compiler installed!")
+            print("do you want to install it?")
+            devchoice = input()
+            if devchoice == "yes":
+                os.system("cmd /k pip install auto-py-to-exe")
+                os.system("auto-py-to-exe")
+            else:
+                pass
+        os.system("auto-py-to-exe")
+
+
 def main():
     print("================================")
     print("Multitasker")
@@ -45,19 +114,57 @@ def main():
         print("Multitasker")
         print("By: MarioVercetti")
         print("================================")
-        print("Co chcesz wybrać?")
+        print("================================")
         print("1.Calculator")
+        print("================================")
         print("2.Notatnik")
-        print("3.Rysowanie")
+        print("================================")
+        print("3.Drawer")
+        print("================================")
         print("4.FNF Input")
+        print("================================")
         print("5.Mining Bot")
+        print("================================")
         print("6.Windows Activator")
+        print("================================")
         print("7.FNF Keybinds Rebinder")
+        print("================================")
         print("8.Half Life 2 Speedrun Tricks")
+        print("================================")
         print("9.Windows Activation Check")
+        print("================================")
+        print("10.Keyboard Rebinder")
+        print("================================")
         print("(Jeżeli chcesz wyjść wpisz: wyjdz)")
         choice = input()
         if choice == "1" or choice == "Calculator" or choice == "calculator" or choice == "kalkulator":
+            print("1.full numbers or "
+                  "2.more complex numbers like: 10.3 or 52.2543")
+            choice = input()
+            if choice == "1":
+                pass
+            elif choice == "2":
+                num1 = float(input("Wpisz pierwszą liczbę: "))
+                print("(1. dodawanie, 2. odejmowanie, 3. mnożenie, 4. dzielenie)")
+                op = input("Wpisz operatora: ")
+                num2 = float(input("Wpisz drugą liczbę: "))
+                if op == "1" or op == "dodawanie" or op == "+":
+                    print("Wynik: ", num1 + num2)
+                    input("Wciśnij enter aby powrócić")
+                elif op == "2" or op == "odejmowanie" or op == "-":
+                    print("Wynik: ", num1 - num2)
+                    input("Wciśnij enter aby powrócić")
+                elif op == "3" or op == "mnożenie" or op == "mnozenie" or op == "*":
+                    print("Wynik: ", num1 * num2)
+                    input("Wciśnij enter aby powrócić")
+                elif op == "4" or op == "dzielenie" or op == "/":
+                    print("Wynik: ", num1 / num2)
+                    input("Wciśnij enter aby powrócić")
+                else:
+                    print("wpisuj operatora z małej litery oraz bez polskich znaków"
+                          "np: mnozenie\n"
+                          "np: dzielenie")
+                    input("wciśnij enter aby powrócić")
             num1 = int(input("Wpisz pierwszą liczbę: "))
             print("(1. dodawanie, 2. odejmowanie, 3. mnożenie, 4. dzielenie)")
             op = input("Wpisz operatora: ")
@@ -98,29 +205,36 @@ def main():
             sys.exit()
         elif choice == "3" or choice == "t" or choice == "T":
             # Its buggy right now, I have to fix that
+            print("Starting up..")
+            time.sleep(1)
             sc = turtle.Screen()
             sc.title("Drawer")
             turtle.forward(0)
             turtle.bgcolor("gray")
-            print("Starting up..")
-            time.sleep(2)
             print("Controls:")
             print("Press R to clear")
             print("Press Shift to speed up turning")
+            print("Press T if you want to draw and Y if you want to not draw")
             print("Press Q to quit")
             while True:
-                if keyboard.is_pressed("w"):
+                if keyboard.is_pressed("w") or keyboard.is_pressed("up"):
                     turtle.forward(3)
-                elif keyboard.is_pressed("s"):
+                elif keyboard.is_pressed("s") or keyboard.is_pressed("down"):
                     turtle.back(3)
-                elif keyboard.is_pressed("d"):
+                elif keyboard.is_pressed("d") or keyboard.is_pressed("right"):
                     turtle.right(3)
-                elif keyboard.is_pressed("a"):
+                elif keyboard.is_pressed("a") or keyboard.is_pressed("left"):
                     turtle.left(3)
                 if keyboard.is_pressed("q"):
                     sys.exit()
                 if keyboard.is_pressed("r"):
                     turtle.clear()
+                if keyboard.is_pressed("shift"):
+                    turtle.speed(12)
+                if keyboard.is_pressed("T"):
+                    turtle.pendown()
+                if keyboard.is_pressed("Y"):
+                    turtle.penup()
         elif choice == "4":
             while True:
                 # may be improved
@@ -135,46 +249,46 @@ def main():
                 print("You can type for example: DFJK or HJKL")
                 if inputchoice == "1":
                     while True:
-                        if keyboard.is_pressed(leftarrow):
+                        if keyboard.on_press(leftarrow):
                             time.sleep(0.02)
                             keyboard.release(leftarrow)
-                        if keyboard.is_pressed(downarrow):
+                        if keyboard.on_press(downarrow):
                             time.sleep(0.02)
                             keyboard.release(downarrow)
-                        if keyboard.is_pressed(uparrow):
+                        if keyboard.on_press(uparrow):
                             time.sleep(0.02)
                             keyboard.release(uparrow)
-                        if keyboard.is_pressed(rightarrow):
+                        if keyboard.on_press(rightarrow):
                             time.sleep(0.02)
                             keyboard.release(rightarrow)
                             continue
                 elif inputchoice == "2":
                     while True:
-                        if keyboard.is_pressed(leftarrow):
+                        if keyboard.on_press(leftarrow):
                             time.sleep(0.1)
                             keyboard.release(leftarrow)
-                        if keyboard.is_pressed(downarrow):
+                        if keyboard.on_press(downarrow):
                             time.sleep(0.1)
                             keyboard.release(downarrow)
-                        if keyboard.is_pressed(uparrow):
+                        if keyboard.on_press(uparrow):
                             time.sleep(0.1)
                             keyboard.release(uparrow)
-                        if keyboard.is_pressed(rightarrow):
+                        if keyboard.on_press(rightarrow):
                             time.sleep(0.1)
                             keyboard.release(rightarrow)
                             continue
                 elif inputchoice == "3":
                     while True:
-                        if keyboard.is_pressed(leftarrow):
+                        if keyboard.on_press(leftarrow):
                             time.sleep(0.15)
                             keyboard.release(leftarrow)
-                        if keyboard.is_pressed(downarrow):
+                        if keyboard.on_press(downarrow):
                             time.sleep(0.15)
                             keyboard.release(downarrow)
-                        if keyboard.is_pressed(uparrow):
+                        if keyboard.on_press(uparrow):
                             time.sleep(0.15)
                             keyboard.release(uparrow)
-                        if keyboard.is_pressed(rightarrow):
+                        if keyboard.on_press(rightarrow):
                             time.sleep(0.15)
                             keyboard.release(rightarrow)
 
@@ -270,11 +384,13 @@ def main():
             # finally ending this crap + adding messagebox
             ctypes.windll.user32.MessageBoxW(0, "Windows has been activated!", "Done", 0)
         elif choice == "7":
+            print("Type keys you want to be binded to arrow keys")
+            print("You can type for example: DFJK or HJKL")
             leftarrow = input("left Arrow: ")
             downarrow = input("Down Arrow: ")
             uparrow = input("Up Arrow: ")
             rightarrow = input("Right Arrow: ")
-            print("You can type for example: DFJK or HJKL")
+            print("Have Fun!")
             keyboard.remap_key(leftarrow, "left")
             keyboard.remap_key(downarrow, "down")
             keyboard.remap_key(uparrow, "up")
@@ -288,17 +404,16 @@ def main():
             if hlchoice == "1":
                 while True:
                     if keyboard.on_press("space"):
-                        keyboard.press_and_release("space")
+                        keyboard.press("space")
                         time.sleep(0.001)
+                        keyboard.release("space")
                         continue
             elif hlchoice == "2":
                 while True:
                     if keyboard.on_press("c"):
-                        while True:
-                            keyboard.press_and_release("e")
-                            time.sleep(0.01)
-                            keyboard.press_and_release("space")
-                            continue
+                        keyboard.press_and_release("e")
+                        time.sleep(0.01)
+                        keyboard.press_and_release("space")
         elif choice == "9":
             os.system("cmd /c slmgr /xpr")
             print("If Windows is succesfully activated, the dialog will indicate is is either 'Permanently"
@@ -307,6 +422,16 @@ def main():
             print("press Q to restart program")
             keyboard.wait("q")
             main()
+        elif choice == "10":
+            print("type key you want to be binded")
+            keytobind = input()
+            print("type key you want to bind")
+            bindedkey = input()
+            print("Have Fun!")
+            keyboard.remap_key(keytobind, bindedkey)
+            keyboard.wait()
+        elif choice == "developermode":
+            developermain()
         else:
             print("Wskazówka: Wpisuj numery bądź napisy z małej litery i bez polskich znaków")
             input()
